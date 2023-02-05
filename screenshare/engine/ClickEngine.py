@@ -1,3 +1,5 @@
+from ctypes import windll
+
 import win32com
 import win32gui
 import win32com.client
@@ -42,11 +44,9 @@ def clickOnScreen(coords):
                 shell.SendKeys('%')
                 win32gui.SetForegroundWindow(win32gui.FindWindow(None, 'Share Screen - Google Chrome'))
     if flag == 3:
-        currentPosition = pyautogui.position()
-        print("Click")
-        print(coords)
-        pyautogui.click(x, y)
-        # pyautogui.moveTo(currentPosition)
+        # currentPosition = pyautogui.position()
+        # pyautogui.click(x, y)
+        pyautogui.moveTo(x, y)
 
 
 def rightClickOnScreen(coords):
@@ -57,3 +57,11 @@ def rightClickOnScreen(coords):
     y = int(coords[1])
     pyautogui.rightClick(x, y)
     # pyautogui.moveTo(currentPosition)
+
+def moveMouseBackToBrowser(coords):
+    windll.user32.SetProcessDPIAware()
+    coords = coords.split('&')
+    print(coords)
+    x = int(coords[0])
+    y = int(coords[1])
+    pyautogui.moveTo(-1300, y)

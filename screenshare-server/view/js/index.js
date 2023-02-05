@@ -71,33 +71,8 @@ window.onload = function() {
         $("#appList").html(html)
     })
 
-    $("body").keyup(function(e){
-        // socket.emit("Type", e.originalEvent.key)
-    });
-
-    // $("#screen").mousedown(function(e){
-    //     let elemOffset = $(this).offset();
-    //     let dpr = window.devicePixelRatio;
-    //
-    //     let elemWidth = $(this).width();
-    //     let elemHeight = $(this).height();
-    //
-    //     let factorX = 1942/elemWidth
-    //     let factorY = 1042/elemHeight
-    //
-    //     let relX = parseInt((e.pageX - 5 - (elemOffset.left)) * factorX) + 5
-    //     let relY = parseInt((e.pageY - 5 - (elemOffset.top)) * factorY) + 5
-    //
-    //     if(e.button == 2) socket.emit("Rightclick", relX + "&" + relY)
-    //     else if(e.button == 0) socket.emit("Click", relX + "&" + relY)
-    //
-    //     return false
-    // });
-
-    $('#screen').on('contextmenu', function (e) {
+    $("#screen").click(function(e){
         let elemOffset = $(this).offset();
-        let dpr = window.devicePixelRatio;
-
         let elemWidth = $(this).width();
         let elemHeight = $(this).height();
 
@@ -106,32 +81,23 @@ window.onload = function() {
 
         let relX = parseInt((e.pageX - 5 - (elemOffset.left)) * factorX) + 5
         let relY = parseInt((e.pageY - 5 - (elemOffset.top)) * factorY) + 15
-
-        socket.emit("Rightclick", relX + "&" + relY)
-    });
-
-    $("#screen").click(function(e){
-        let elemOffset = $(this).offset();
-        let dpr = window.devicePixelRatio;
-
-        let elemWidth = $(this).width();
-        let elemHeight = $(this).height();
-
-        let factorX = 1942/elemWidth
-        let factorY = 1042/elemHeight
-
-        let relX = parseInt((e.pageX - 5 - (elemOffset.left)) * factorX) + 5
-        let relY = parseInt((e.pageY - 5 - (elemOffset.top)) * factorY) + 25
-
         socket.emit("Click", relX + "&" + relY)
-    });
+    })
+
+    $("body").mousemove(function(event){
+        let elemOffset = $(".right").offset();
+        console.log(event.pageX + " & " + parseFloat((elemOffset.left) + parseFloat($(".right").width())))
+        if(event.pageX + 5 >= parseFloat(elemOffset.left) + parseFloat($(".right").width())) {
+            socket.emit("MoveMouseBackToBrowserRequest", Math.floor(parseFloat($(".right").width())) + "&" + event.pageY)
+        }
+    })
 }
 
 function requestForAppChange() {
     socket.emit("AppChangeRequest", $("#appList").val())
     setTimeout(function(){
         shareScreen()
-    }, 100)
+    }, 500)
 }
 
 function shareScreen() {

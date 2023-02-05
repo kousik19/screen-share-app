@@ -48,6 +48,10 @@ io.on('connection', (socket) => {
     socket.on("AppChangeRequest", (arg) => {
         socket.broadcast.emit("ChangeApp", arg)
     });
+
+    socket.on("MoveMouseBackToBrowserRequest", (arg) => {
+        socket.broadcast.emit("MoveMouseBackToBrowser", arg)
+    });
 });
 
 http.listen(3000, () => {
