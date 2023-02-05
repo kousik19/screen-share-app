@@ -1,5 +1,6 @@
 let socket = io.connect('http://localhost:3000');
-
+let curX
+let curY
 window.onload = function() {
     window. addEventListener("contextmenu", e => e. preventDefault());
     /////////////
@@ -84,20 +85,11 @@ window.onload = function() {
         socket.emit("Click", relX + "&" + relY)
     })
 
-    $("body").mousemove(function(event){
-        let elemOffset = $(".right").offset();
-        console.log(event.pageX + " & " + parseFloat((elemOffset.left) + parseFloat($(".right").width())))
-        if(event.pageX + 5 >= parseFloat(elemOffset.left) + parseFloat($(".right").width())) {
-            socket.emit("MoveMouseBackToBrowserRequest", Math.floor(parseFloat($(".right").width())) + "&" + event.pageY)
-        }
-    })
-}
-
-function requestForAppChange() {
-    socket.emit("AppChangeRequest", $("#appList").val())
-    setTimeout(function(){
-        shareScreen()
-    }, 500)
+    $(document).mousemove(function(event) {
+        curX = event.pageX;
+        curY = event.pageY;
+        socket.emit("MoveMouseBackToBrowserRequest", curX + "&" + curY)
+    });
 }
 
 function shareScreen() {

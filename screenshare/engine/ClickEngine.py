@@ -1,4 +1,4 @@
-from ctypes import windll
+import ctypes
 
 import win32com
 import win32gui
@@ -6,7 +6,6 @@ import win32com.client
 import pyautogui
 
 from engine import Engine
-
 
 def clickOnScreen(coords):
     flag = 3
@@ -59,9 +58,8 @@ def rightClickOnScreen(coords):
     # pyautogui.moveTo(currentPosition)
 
 def moveMouseBackToBrowser(coords):
-    windll.user32.SetProcessDPIAware()
+    global curX
+    global curY
     coords = coords.split('&')
-    print(coords)
-    x = int(coords[0])
-    y = int(coords[1])
-    pyautogui.moveTo(-1300, y)
+    curX = int(coords[0])
+    curY = int(coords[1])
