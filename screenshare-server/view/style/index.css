@@ -1,0 +1,48 @@
+* {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    font-family: sans-serif;
+}
+
+.container {
+    display: flex;
+    height: 600px;
+}
+
+.left {
+    width: 30%;
+    margin-left: 6px;
+}
+
+.resizer {
+    background-color: #cbd5e0;
+    cursor: ew-resize;
+    height: 100%;
+    width: 2px;
+}
+
+.right {
+    flex: 1;
+    display: flex;
+}
+
+.control-container { width: 10%; }
+.screen-container { width: 90%; }
+
+.screen {
+    width: 100%;
+}
+
+.appList {
+    border: 1px solid black;
+    height: max-content;
+}
+
+.button {
+    padding: 8px;
+    border: 2px solid white;
+    background: #04AA6D;
+    color: white;
+    border-radius: 3px;
+}
