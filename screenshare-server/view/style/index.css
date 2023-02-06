@@ -11,7 +11,7 @@
 }
 
 .left {
-    width: 30%;
+    width: 10%;
     margin-left: 6px;
 }
 
@@ -23,15 +23,13 @@
 }
 
 .right {
-    flex: 1;
-    display: flex;
 }
 
 .control-container { width: 10%; }
 .screen-container { width: 90%; }
 
 .screen {
-    width: 100%;
+    width: 400px;
 }
 
 .appList {

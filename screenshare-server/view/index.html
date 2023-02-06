@@ -8,14 +8,18 @@
 <body>
     <div class="container">
         <div class="left">
-            <h5> Select App </h5>
             <br />
-            <select id="appList" class="appList" onchange="requestForAppChange()">
-                <option val=""> -- Select App -- </option>
+            <br />
+            <h5> Select Size : </h5>
+            <select id="appList" class="appList" onchange="requestForSizeChange()">
+                <option value="30"> Small </option>
+                <option value="50" selected> Medium </option>
+                <option value="90"> Large </option>
+                <option value="100"> Extra Large </option>
             </select>
             <br />
             <br />
-<!--            <button class="button" onclick="shareScreen()"> Cast Screen </button>-->
+             <button class="button" onclick="stopShare()"> Stop Share </button>
         </div>
         <div class="resizer" id="dragMe"></div>
         <div class="right"><img id="screen" class="screen" /></div>
