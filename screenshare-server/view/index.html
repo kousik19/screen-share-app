@@ -4,28 +4,44 @@
     <meta charset="UTF-8">
     <title>Share Screen</title>
     <link rel="stylesheet" href="style/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
     <div class="container">
-        <div class="left">
-            <br />
-            <br />
-            <h5> Select Size : </h5>
-            <select id="appList" class="appList" onchange="requestForSizeChange()">
-                <option value="30"> Small </option>
-                <option value="50" selected> Medium </option>
-                <option value="90"> Large </option>
-                <option value="100"> Extra Large </option>
-            </select>
-            <br />
-            <br />
-            <button class="button" onclick="startShare()"> Start Share </button>
-            <br />
-            <br />
-            <button class="button" style="background:#f44336"  onclick="stopShare()"> Stop Share </button>
+<!--        <div class="left">-->
+<!--            <br />-->
+<!--            <br />-->
+<!--            <h5> Select Size : </h5>-->
+<!--            <select id="appList" class="appList" onchange="requestForSizeChange()">-->
+<!--                <option value="30"> Small </option>-->
+<!--                <option value="50" selected> Medium </option>-->
+<!--                <option value="90"> Large </option>-->
+<!--                <option value="100"> Extra Large </option>-->
+<!--            </select>-->
+<!--            <br />-->
+<!--            <br />-->
+<!--            <button class="button" onclick="startShare()"> Start Share </button>-->
+<!--            <br />-->
+<!--            <br />-->
+<!--            <button class="button" style="background:#f44336"  onclick="stopShare()"> Stop Share </button>-->
+<!--        </div>-->
+        <img id="screen" class="screen" />
+    </div>
+
+    <div class="floatingButtonWrap">
+        <div class="floatingButtonInner">
+            <a href="#" class="floatingButton">
+                <i class="fa fa-plus icon-default"></i>
+            </a>
+            <ul class="floatingMenu">
+                <li onclick="requestForSizeChange(90)"><p> Extra Large </p></li>
+                <li onclick="requestForSizeChange(70)"><p> Large </p></li>
+                <li onclick="requestForSizeChange(50)"><p> Medium </p></li>
+                <li onclick="requestForSizeChange(30)"><p> Small </p></li>
+                <li onclick="startShare()"><p> Start Share </p></li>
+                <li onclick="stopShare()"><p> Stop Share </p></li>
+            </ul>
         </div>
-        <div class="resizer" id="dragMe"></div>
-        <div class="right"><img id="screen" class="screen" /></div>
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
