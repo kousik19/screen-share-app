@@ -1,8 +1,8 @@
 import socketio
 import sys
-from engine.ClickEngine import clickOnScreen
 
 sys.path.append("..")
+from engine.ClickEngine import clickOnScreen
 from engine.ShareEngine import getScreen
 from engine import Engine
 
