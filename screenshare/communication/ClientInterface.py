@@ -1,5 +1,6 @@
 import socketio
 import sys
+from engine.ClickEngine import clickOnScreen
 
 sys.path.append("..")
 from engine.ShareEngine import getScreen
@@ -13,6 +14,10 @@ Engine.init()
 def message(data):
     screen = getScreen(data)
     sio.emit('CurrentScreen', screen)
+
+@sio.on('ClickRequest')
+def message(data):
+    clickOnScreen(data)
 
 @sio.event
 def connect():
