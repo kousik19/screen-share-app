@@ -4,10 +4,8 @@ from threading import Thread
 import win32gui
 import win32ui
 from PIL import Image
-from desktopmagic.screengrab_win32 import (getDisplayRects, getRectAsImage)
+from desktopmagic.screengrab_win32 import (getDisplayRects)
 import keyboard
-
-from engine import ClickEngine
 
 
 def init():
@@ -22,12 +20,12 @@ def init():
     thread = Thread(target=checkKey)
     thread.start()
 
+
 def checkKey():
     while True:
         if keyboard.read_key() == "esc":
-            x = 0 - ClickEngine.curX
-            print(x)
             ctypes.windll.user32.SetCursorPos(-1200, 300)
+
 
 def get_cursor():
     hcursor = win32gui.GetCursorInfo()[1]

@@ -50,7 +50,6 @@ def getScreen(title):
         im.save(buffered, format="JPEG")
         return base64.b64encode(buffered.getvalue()).decode('UTF-8')
     if flag == 2:
-
         cursor = Engine.cursor
         rect = getRectAsImage(Engine.screens[1])
         pos_win = win32gui.GetCursorPos()
@@ -58,7 +57,7 @@ def getScreen(title):
         rect.paste(cursor, pos, cursor)
 
         output = BytesIO()
-        rect.save(output, format='JPEG')
+        rect.save(output, format='PNG')
         im_data = output.getvalue()
         image_data = base64.b64encode(im_data).decode()
         return image_data

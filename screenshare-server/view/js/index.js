@@ -1,11 +1,13 @@
 let socket = io.connect('http://localhost:3000');
 let curX
 let curY
+let isStopped = false
 window.onload = function() {
     window. addEventListener("contextmenu", e => e. preventDefault());
     shareScreen()
 
     socket.on('RenderScreen', function(message){
+        if(isStopped) return
         $("#screen").attr("src", "data:image/png;base64," + message);
         setTimeout(function(){
             socket.emit("RequestScreen", $("#appList").val())
@@ -34,6 +36,17 @@ window.onload = function() {
 
 function requestForSizeChange() {
     $("#screen").width($("#appList").val() + "%")
+}
+
+function stopShare() {
+    isStopped = true
+    $("#screen").attr("src", "dark.screen")
+}
+
+function startShare() {
+    if(!isStopped) return
+    isStopped = false
+    shareScreen()
 }
 
 function shareScreen() {
