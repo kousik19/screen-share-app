@@ -57,7 +57,7 @@ def getScreen(title):
         rect.paste(cursor, pos, cursor)
 
         output = BytesIO()
-        rect.save(output, format='PNG')
+        rect.save(output, format='JPEG')
         im_data = output.getvalue()
         image_data = base64.b64encode(im_data).decode()
         return image_data
