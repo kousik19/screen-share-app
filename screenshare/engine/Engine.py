@@ -7,6 +7,14 @@ from PIL import Image
 from desktopmagic.screengrab_win32 import (getDisplayRects)
 import keyboard
 
+from subprocess import check_output
+import pathlib
+from desktopmagic.screengrab_win32 import (getDisplayRects)
+from threading import Thread
+import webbrowser
+import time
+import pygetwindow as gw
+
 
 def init():
     global screens
@@ -64,3 +72,26 @@ def get_cursor():
                     minsize[0] = x
 
     return cursor
+
+
+def start():
+    screens = (getDisplayRects())
+    if len(screens) > 1:
+        print("Already Started")
+        exit()
+
+    print("Creating virtual screen...")
+    path = pathlib.Path(__file__).parent.resolve().__str__()
+    check_output(path + "/../../VirtualScreenDriver/deviceinstaller64.exe enableidd 1", shell=True)
+    check_output(path + "/../../mmt/MultiMonitorTool.exe /SetNextPrimary", shell=True)
+    print("Virtual screen created...")
+
+def stop():
+    screens = (getDisplayRects())
+    if len(screens) == 1:
+        print("Already Stopped")
+        exit()
+
+    path = pathlib.Path(__file__).parent.resolve().__str__()
+    check_output(path + "/../../mmt/MultiMonitorTool.exe /SetPrimary 1", shell=True)
+    check_output(path + "/../../VirtualScreenDriver/deviceinstaller64.exe enableidd 0", shell=True)

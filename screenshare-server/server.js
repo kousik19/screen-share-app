@@ -52,6 +52,14 @@ io.on('connection', (socket) => {
     socket.on("MoveMouseBackToBrowserRequest", (arg) => {
         socket.broadcast.emit("MoveMouseBackToBrowser", arg)
     });
+
+    socket.on("StartRequest", (arg) => {
+        socket.broadcast.emit("StartRequest", arg)
+    });
+
+    socket.on("StopRequest", (arg) => {
+        socket.broadcast.emit("StopRequest", arg)
+    });
 });
 
 http.listen(3000, () => {

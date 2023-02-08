@@ -78,11 +78,13 @@ function requestForSizeChange(size) {
 function stopShare() {
     isStopped = true
     $("#screen").attr("src", "dark.screen")
+    socket.emit("StopRequest")
 }
 
 function startShare() {
     if(!isStopped) return
     isStopped = false
+    socket.emit("StartRequest")
     shareScreen()
 }
 

@@ -19,6 +19,14 @@ def message(data):
 def message(data):
     clickOnScreen(data)
 
+@sio.on('StartRequest')
+def message(data):
+    Engine.start()
+
+@sio.on('StopRequest')
+def message(data):
+    Engine.stop()
+
 @sio.event
 def connect():
     print("Connected!")

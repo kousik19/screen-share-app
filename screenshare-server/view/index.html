@@ -28,19 +28,41 @@
         <img id="screen" class="screen" />
     </div>
 
-    <div class="floatingButtonWrap">
-        <div class="floatingButtonInner">
-            <a href="#" class="floatingButton">
-                <i class="fa fa-plus icon-default"></i>
+    <div class="fab-top-wrapper" title="Portal">
+        <input id="fab-topCheckbox" type="checkbox" class="fab-top-checkbox" />
+        <label class="fab-top" for="fab-topCheckbox">
+            <span class="fab-top-dots fab-top-dots-1"></span>
+            <span class="fab-top-dots fab-top-dots-2"></span>
+            <span class="fab-top-dots fab-top-dots-3"></span>
+        </label>
+        <div class="fab-top-wheel">
+            <a class="fab-top-action fab-top-action-2 green" onclick="startShare()">
+                <i class="fa fa-check" aria-hidden="true"></i>
             </a>
-            <ul class="floatingMenu">
-                <li onclick="requestForSizeChange(90)"><p> Extra Large </p></li>
-                <li onclick="requestForSizeChange(70)"><p> Large </p></li>
-                <li onclick="requestForSizeChange(50)"><p> Medium </p></li>
-                <li onclick="requestForSizeChange(30)"><p> Small </p></li>
-                <li onclick="startShare()"><p> Start Share </p></li>
-                <li onclick="stopShare()"><p> Stop Share </p></li>
-            </ul>
+            <a class="fab-top-action fab-top-action-3 red" onclick="stopShare()">
+                <i class="fa fa-2xl fa-times" aria-hidden="true"></i>
+            </a>
+        </div>
+    </div>
+
+    <div class="fab-wrapper" title="Change Screen Size">
+        <input id="fabCheckbox" type="checkbox" class="fab-checkbox" />
+        <label class="fab" for="fabCheckbox">
+            <i class="fab-box fa-2xl fa fa-window-maximize" aria-hidden="true"></i>
+        </label>
+        <div class="fab-wheel">
+            <a class="fab-action fab-action-1" onclick="requestForSizeChange(30)">
+                SM
+            </a>
+            <a class="fab-action fab-action-2" onclick="requestForSizeChange(50)">
+                M
+            </a>
+            <a class="fab-action fab-action-3" onclick="requestForSizeChange(70)">
+                LG
+            </a>
+            <a class="fab-action fab-action-4" onclick="requestForSizeChange(90)">
+                XL
+            </a>
         </div>
     </div>
 
