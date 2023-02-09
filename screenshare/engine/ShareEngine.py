@@ -53,7 +53,8 @@ def getScreen(title):
         cursor = Engine.cursor
         rect = getRectAsImage(Engine.screens[1])
         pos_win = win32gui.GetCursorPos()
-        pos = (round(pos_win[0] * Engine.ratio), round(pos_win[1] * Engine.ratio))
+        # pos = (round(pos_win[0] * Engine.ratio) - 1920, round(pos_win[1] * Engine.ratio))
+        pos = (round(pos_win[0]) - 1920, round(pos_win[1]))
         rect.paste(cursor, pos, cursor)
 
         output = BytesIO()

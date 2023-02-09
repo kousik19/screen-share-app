@@ -22,7 +22,7 @@ if len(screens) > 1:
 print("Creating virtual screen...")
 path = pathlib.Path(__file__).parent.resolve().__str__()
 check_output(path + "/VirtualScreenDriver/deviceinstaller64.exe enableidd 1", shell=True)
-check_output(path + "/mmt/MultiMonitorTool.exe /SetNextPrimary", shell=True)
+# check_output(path + "/mmt/MultiMonitorTool.exe /SetNextPrimary", shell=True)
 print("Virtual screen created...")
 
 nodeApp = Thread(target=startNodeApp)

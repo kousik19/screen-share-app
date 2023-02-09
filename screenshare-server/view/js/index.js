@@ -24,6 +24,12 @@ window.onload = function() {
 
         let relX = parseInt((e.pageX - 5 - (elemOffset.left)) * factorX) + 5
         let relY = parseInt((e.pageY - 5 - (elemOffset.top)) * factorY) + 15
+
+        let mainScreenAsPrimary = true
+        if(mainScreenAsPrimary) {
+            relX += 1942
+        }
+
         socket.emit("Click", relX + "&" + relY)
     })
 

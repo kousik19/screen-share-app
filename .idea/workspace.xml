@@ -19,7 +19,14 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ae97ef9d-e3a3-4537-9f81-79f0f40069fc" name="Default Changelist" comment="Add start and stop script" />
+    <list default="true" id="ae97ef9d-e3a3-4537-9f81-79f0f40069fc" name="Default Changelist" comment="Add start and stop script">
+      <change afterPath="$PROJECT_DIR$/screenshare/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screenshare-server/view/js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/screenshare-server/view/js/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screenshare/engine/Engine.py" beforeDir="false" afterPath="$PROJECT_DIR$/screenshare/engine/Engine.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screenshare/engine/ShareEngine.py" beforeDir="false" afterPath="$PROJECT_DIR$/screenshare/engine/ShareEngine.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start.py" beforeDir="false" afterPath="$PROJECT_DIR$/start.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -36,7 +43,6 @@
   <component name="PropertiesComponent">
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
@@ -74,6 +80,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Add start and stop script" />
@@ -84,6 +91,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="397" y="143" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1280.680@0.0.1280.680" timestamp="1675749454131" />
+    <state x="463" y="43" key="RollbackChangesDialog" timestamp="1675930584972">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="463" y="43" key="RollbackChangesDialog/0.0.1280.680/1920.0.1280.680@0.0.1280.680" timestamp="1675930584972" />
     <state x="233" y="74" key="Vcs.Push.Dialog.v2" timestamp="1675752818719">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
