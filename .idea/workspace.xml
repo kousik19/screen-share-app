@@ -19,13 +19,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ae97ef9d-e3a3-4537-9f81-79f0f40069fc" name="Default Changelist" comment="Add start and stop script">
+    <list default="true" id="ae97ef9d-e3a3-4537-9f81-79f0f40069fc" name="Default Changelist" comment="Add main screen as primary">
       <change afterPath="$PROJECT_DIR$/screenshare/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/screenshare-server/view/js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/screenshare-server/view/js/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/screenshare/engine/Engine.py" beforeDir="false" afterPath="$PROJECT_DIR$/screenshare/engine/Engine.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/screenshare/engine/ShareEngine.py" beforeDir="false" afterPath="$PROJECT_DIR$/screenshare/engine/ShareEngine.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start.py" beforeDir="false" afterPath="$PROJECT_DIR$/start.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +61,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675752812990</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Add main screen as primary">
+      <created>1675959039724</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1675959039724</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -84,7 +88,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Add start and stop script" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add start and stop script" />
+    <MESSAGE value="Add main screen as primary" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add main screen as primary" />
   </component>
   <component name="WindowStateProjectService">
     <state x="397" y="143" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1675749454131">
@@ -95,9 +100,9 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="463" y="43" key="RollbackChangesDialog/0.0.1280.680/1920.0.1280.680@0.0.1280.680" timestamp="1675930584972" />
-    <state x="233" y="74" key="Vcs.Push.Dialog.v2" timestamp="1675752818719">
+    <state x="233" y="74" key="Vcs.Push.Dialog.v2" timestamp="1675959041357">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="233" y="74" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1675752818719" />
+    <state x="233" y="74" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1675959041357" />
   </component>
 </project>

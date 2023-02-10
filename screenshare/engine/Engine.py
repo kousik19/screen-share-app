@@ -50,20 +50,31 @@ def checkApp():
             name = w.GetWindowText(w.GetForegroundWindow())
             hwnd = win32gui.FindWindow(None, name)
             threadid, pid = win32process.GetWindowThreadProcessId(hwnd)
-            if activeApp == pid or "chrome" in name.lower() or appsInVirtualScreen.count(pid) > 1:
-                continue
             pos_win = win32gui.GetCursorPos()
-            if pos_win[0] > 1942:
+
+            if activeApp == pid or "chrome" in name.lower():
+                continue
+
+            elif pos_win[0] < 1942 and appsInVirtualScreen.count(pid) > 0:
+                activeApp = pid
+                appsInVirtualScreen.remove(pid)
+                swap_screen(keyboard)
+
+            elif pos_win[0] > 1942 and appsInVirtualScreen.count(pid) == 0:
                 activeApp = pid
                 appsInVirtualScreen.append(pid)
-                keyboard.press(Key.cmd)
-                keyboard.press(Key.shift)
-                keyboard.press(Key.right)
-                keyboard.release(Key.cmd)
-                keyboard.release(Key.shift)
-                keyboard.release(Key.right)
+                swap_screen(keyboard)
         except():
             print("Error")
+
+
+def swap_screen(keyboard):
+    keyboard.press(Key.cmd)
+    keyboard.press(Key.shift)
+    keyboard.press(Key.right)
+    keyboard.release(Key.cmd)
+    keyboard.release(Key.shift)
+    keyboard.release(Key.right)
 
 
 def get_cursor():
