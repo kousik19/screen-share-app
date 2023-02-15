@@ -33,6 +33,11 @@ window.onload = function() {
         socket.emit("Click", relX + "&" + relY)
     })
 
+    $("#portal-checkbox").on('click', function(){
+        if ($(this).prop("checked") == true) startShare()
+        else stopShare()
+    })
+
     $('.floatingButton').on('click',
         function(e){
             e.preventDefault();
