@@ -14,6 +14,8 @@ from desktopmagic.screengrab_win32 import (getDisplayRects)
 from threading import Thread
 import time
 
+from engine.Monitor import get_virtual_display_name
+
 
 def init():
     global screens
@@ -21,6 +23,9 @@ def init():
     global cursor
     global ratio
     global activeApp
+    global virtual_display_name
+    path = pathlib.Path(__file__).parent.resolve().__str__()
+    virtual_display_name = get_virtual_display_name(path)
     screens = (getDisplayRects())
     size = round(ctypes.windll.shcore.GetScaleFactorForDevice(0) / 100 * 32)
     cursor = get_cursor()
@@ -117,24 +122,13 @@ def get_cursor():
 
 
 def start():
-    screens = (getDisplayRects())
-    if len(screens) > 1:
-        print("Already Started")
-        exit()
-
     print("Creating virtual screen...")
     path = pathlib.Path(__file__).parent.resolve().__str__()
-    check_output(path + "/../../VirtualScreenDriver/deviceinstaller64.exe enableidd 1", shell=True)
-    check_output(path + "/../../mmt/MultiMonitorTool.exe /SetNextPrimary", shell=True)
+    check_output(path + "/../../mmt/MultiMonitorTool.exe /enable  \\\\." + virtual_display_name, shell=True)
     print("Virtual screen created...")
 
 
 def stop():
-    screens = (getDisplayRects())
-    if len(screens) == 1:
-        print("Already Stopped")
-        exit()
-
+    global virtual_display_name
     path = pathlib.Path(__file__).parent.resolve().__str__()
-    check_output(path + "/../../mmt/MultiMonitorTool.exe /SetPrimary 1", shell=True)
-    check_output(path + "/../../VirtualScreenDriver/deviceinstaller64.exe enableidd 0", shell=True)
+    check_output(path + "/../../mmt/MultiMonitorTool.exe /disable \\\\." + virtual_display_name, shell=True)

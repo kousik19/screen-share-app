@@ -14,10 +14,10 @@ def startNodeApp():
 def startPythonApp():
     check_output("cd \"screenshare\communication\" & python " + path + "/screenshare/communication/ClientInterface.py", shell=True)
 
-screens = (getDisplayRects())
-if len(screens) > 1:
-    print("Already Started")
-    exit()
+print("Resetting...")
+path = pathlib.Path(__file__).parent.resolve().__str__()
+check_output(path + "/mmt/MultiMonitorTool.exe /SetPrimary 1", shell=True)
+check_output(path + "/VirtualScreenDriver/deviceinstaller64.exe enableidd 0", shell=True)
 
 print("Creating virtual screen...")
 path = pathlib.Path(__file__).parent.resolve().__str__()
