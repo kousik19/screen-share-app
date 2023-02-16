@@ -1,6 +1,4 @@
 let socket = io.connect('http://localhost:3000');
-let curX
-let curY
 let isStopped = false
 window.onload = function() {
     window. addEventListener("contextmenu", e => e. preventDefault());
@@ -34,7 +32,7 @@ window.onload = function() {
     })
 
     $("#portal-checkbox").on('click', function(){
-        if ($(this).prop("checked") == true) startShare()
+        if ($(this).prop("checked") === true) startShare()
         else stopShare()
     })
 

@@ -32,4 +32,4 @@ def get_virtual_display_name(path):
         dName = linecache.getline('temp', 12).split(".")[1]
 
     os.remove("temp")
-    return dName
+    return dName.replace('\r', '').replace('\n', '')

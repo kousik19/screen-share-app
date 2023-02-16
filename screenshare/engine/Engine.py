@@ -1,7 +1,8 @@
 import ctypes
 
+import pythoncom
 import win32process
-from pynput.keyboard import Key, Controller
+import wmi
 
 import win32gui
 import win32ui
@@ -16,13 +17,17 @@ import time
 
 from engine.Monitor import get_virtual_display_name
 
+from pynput import mouse
+
+
+class MouseIOException(Exception): pass
+
 
 def init():
     global screens
     global size
     global cursor
     global ratio
-    global activeApp
     global virtual_display_name
     path = pathlib.Path(__file__).parent.resolve().__str__()
     virtual_display_name = get_virtual_display_name(path)
@@ -44,42 +49,73 @@ def checkKey():
             ctypes.windll.user32.SetCursorPos(500, 500)
 
 
+def get_app_name(pid):
+    pythoncom.CoInitialize()
+    c = wmi.WMI()
+    try:
+        for p in c.query('SELECT Name FROM Win32_Process WHERE ProcessId = %s' % str(pid)):
+            exe = p.Name
+            break
+    except:
+        return None
+    else:
+        return exe
+
+
+def handle_click(x, y, button, pressed):
+    handle_click_thread = Thread(target=handle_screen_switch, args=(x, y, button, pressed))
+    handle_click_thread.start()
+
+
+def handle_screen_switch(x, y, button, pressed):
+    global active_app
+    global apps_in_virtual_screen
+    try:
+        active_app
+    except:
+        active_app = ''
+        apps_in_virtual_screen = []
+    try:
+        time.sleep(1)
+        app_window_name = win32gui.GetWindowText(win32gui.GetForegroundWindow())
+        hwnd = win32gui.FindWindow(None, app_window_name)
+        _, pid = win32process.GetWindowThreadProcessId(hwnd)
+        process_name = get_app_name(pid)
+
+        path = pathlib.Path(__file__).parent.resolve().__str__()
+
+        if "chrome" in app_window_name.lower() or active_app == pid:
+            return
+
+        active_app = pid
+
+        if x < 1942:
+            if apps_in_virtual_screen.count(pid) > 0:
+                apps_in_virtual_screen.remove(pid)
+                move_to_primary_screen(path, process_name)
+
+        elif x > 1942:
+            if apps_in_virtual_screen.count(pid) == 0:
+                apps_in_virtual_screen.append(pid)
+                move_to_virtual_screen(path, process_name)
+    except():
+        print("Error")
+
+
 def checkApp():
-    keyboard = Controller()
-    activeApp = ''
-    appsInVirtualScreen = []
-    while True:
-        try:
-            time.sleep(.5)
-            w = win32gui
-            name = w.GetWindowText(w.GetForegroundWindow())
-            hwnd = win32gui.FindWindow(None, name)
-            threadid, pid = win32process.GetWindowThreadProcessId(hwnd)
-            pos_win = win32gui.GetCursorPos()
-
-            if activeApp == pid or "chrome" in name.lower():
-                continue
-
-            elif pos_win[0] < 1942 and appsInVirtualScreen.count(pid) > 0:
-                activeApp = pid
-                appsInVirtualScreen.remove(pid)
-                swap_screen(keyboard)
-
-            elif pos_win[0] > 1942 and appsInVirtualScreen.count(pid) == 0:
-                activeApp = pid
-                appsInVirtualScreen.append(pid)
-                swap_screen(keyboard)
-        except():
-            print("Error")
+    listener = mouse.Listener(on_click=handle_click)
+    listener.start()
+    listener.join()
 
 
-def swap_screen(keyboard):
-    keyboard.press(Key.cmd)
-    keyboard.press(Key.shift)
-    keyboard.press(Key.right)
-    keyboard.release(Key.cmd)
-    keyboard.release(Key.shift)
-    keyboard.release(Key.right)
+def move_to_virtual_screen(path, app_title):
+    check_output(
+        path + "/../../mmt/MultiMonitorTool.exe /MoveWindow \\\\." + virtual_display_name + " Process " + app_title,
+        shell=True)
+
+
+def move_to_primary_screen(path, app_title):
+    check_output(path + "/../../mmt/MultiMonitorTool.exe /MoveWindow Primary Process " + app_title, shell=True)
 
 
 def get_cursor():
@@ -92,7 +128,6 @@ def get_cursor():
     hdc.DrawIcon((0, 0), hcursor)
 
     bmpinfo = hbmp.GetInfo()
-    bmpbytes = hbmp.GetBitmapBits()
     bmpstr = hbmp.GetBitmapBits(True)
     cursor = Image.frombuffer('RGB', (bmpinfo['bmWidth'], bmpinfo['bmHeight']), bmpstr, 'raw', 'BGRX', 0, 1).convert(
         "RGBA")
