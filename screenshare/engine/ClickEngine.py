@@ -1,5 +1,3 @@
-import ctypes
-
 import win32com
 import win32gui
 import win32com.client
@@ -49,13 +47,7 @@ def clickOnScreen(coords):
 
 
 def rightClickOnScreen(coords):
-    currentPosition = pyautogui.position()
-    print("RightClick")
-    coords = coords.split('&')
-    x = int(coords[0])
-    y = int(coords[1])
-    pyautogui.rightClick(x, y)
-    # pyautogui.moveTo(currentPosition)
+    print("Remove this method")
 
 def moveMouseBackToBrowser(coords):
     global curX

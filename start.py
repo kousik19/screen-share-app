@@ -3,11 +3,14 @@ import signal
 
 from subprocess import check_output
 import pathlib
-from desktopmagic.screengrab_win32 import (getDisplayRects)
+
+from screenshare.engine.Monitor import get_virtual_display_name
+
+path = pathlib.Path(__file__).parent.resolve().__str__()
+check_output("pip install -r screenshare/requirements.txt", shell=True)
+
 from threading import Thread
-import webbrowser
 import time
-import pygetwindow as gw
 
 
 def startNodeApp():
@@ -20,16 +23,27 @@ def startPythonApp():
                  shell=True)
 
 
-print("Resetting...")
 path = pathlib.Path(__file__).parent.resolve().__str__()
+print("Installing...")
+check_output(
+    path + "/VirtualScreenDriver/deviceinstaller64.exe install " + path + "/VirtualScreenDriver/usbmmidd.inf usbmmidd",
+    shell=True)
+
+print("Resetting...")
 check_output(path + "/mmt/MultiMonitorTool.exe /SetPrimary 1", shell=True)
 check_output(path + "/VirtualScreenDriver/deviceinstaller64.exe enableidd 0", shell=True)
 
 print("Creating virtual screen...")
-path = pathlib.Path(__file__).parent.resolve().__str__()
 check_output(path + "/VirtualScreenDriver/deviceinstaller64.exe enableidd 1", shell=True)
 # check_output(path + "/mmt/MultiMonitorTool.exe /SetNextPrimary", shell=True)
 print("Virtual screen created...")
+
+print("Setting resolution...")
+virtual_display_name = get_virtual_display_name()
+check_output(path + "/mmt/MultiMonitorTool.exe /setmax \\\\." + virtual_display_name, shell=True)
+
+print("Extending displays...")
+check_output("%windir%\System32\DisplaySwitch.exe /extend", shell=True)
 
 nodeApp = Thread(target=startNodeApp)
 pythonApp = Thread(target=startPythonApp)

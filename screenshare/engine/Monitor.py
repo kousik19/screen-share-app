@@ -11,7 +11,7 @@ def get_encoding_type(file):
     return detect(rawdata)['encoding']
 
 
-def get_virtual_display_name(path):
+def get_virtual_display_name(path=""):
     path = pathlib.Path(__file__).parent.resolve().__str__()
     check_output(path + "/../../mmt/MultiMonitorTool.exe /stext temp", shell=True)
     try:
