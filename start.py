@@ -4,11 +4,10 @@ import signal
 from subprocess import check_output
 import pathlib
 
-from screenshare.engine.Monitor import get_virtual_display_name
-
 path = pathlib.Path(__file__).parent.resolve().__str__()
 check_output("pip install -r screenshare/requirements.txt", shell=True)
 
+from screenshare.engine.Monitor import get_virtual_display_name
 from threading import Thread
 import time
 
